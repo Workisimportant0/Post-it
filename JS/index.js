@@ -1,6 +1,9 @@
 let container = document.querySelector('.container');
 let listPostIt = [];
-// let mouvement = new Post_it(50, 50);
+let monPost = new Post_it(1)
+monPost.affiche()
+
+
 
 let btn_ajout = document.querySelector('#ajout_postit');
 function ajouterPostIt() {
@@ -20,7 +23,13 @@ window.addEventListener("load", () => {
     btn_ajout.addEventListener("click", () => {
         ajouterPostIt();
     });
-    // mouvement.deplacer();
-
+    monPost.deplacer(400, 300)
+    monPost.affiche()
+    
+    monPost.agrandir(200, 300)
+    monPost.affiche()
+    
+    monPost.change_texte("Salut")
+    monPost.affiche()
 
 });
