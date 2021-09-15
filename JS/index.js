@@ -1,35 +1,53 @@
 let container = document.querySelector('.container');
 let listPostIt = [];
-let monPost = new Post_it(1)
-monPost.affiche()
+let numPostIt = -1;
+let action = "";
 
 
+let btn_ajout_vert = document.querySelector('#ajout_postit_vert');
+let btn_ajout_rouge = document.querySelector('#ajout_postit_rouge');
+let btn_ajout_rose = document.querySelector('#ajout_postit_pink');
 
-let btn_ajout = document.querySelector('#ajout_postit');
-function ajouterPostIt() {
+function ajouterPostItRouge() {
     container.innerHTML = "";
-    listPostIt.push(new Post_it(50, 50, 300, 300, "red", "Mon premier post it"));
+    listPostIt.push(new Post_it(listPostIt.length, 50, 50, 200, 200, "red", "Mon premier post it"));
+    for (let i in listPostIt) {
+        listPostIt[i].affiche();
+    }
+}
+function ajouterPostItVert() {
+    container.innerHTML = "";
+    listPostIt.push(new Post_it(listPostIt.length, 50, 50, 200, 200, "green", "Mon deuxieme post it"));
+    for (let i in listPostIt) {
+        listPostIt[i].affiche();
+    }
+}
+function ajouterPostItRose() {
+    container.innerHTML = "";
+    listPostIt.push(new Post_it(listPostIt.length, 50, 50, 200, 200, "pink", "Mon troisième post it"));
     for (let i in listPostIt) {
         listPostIt[i].affiche();
     }
 }
 
 
-// let postit1 = new Post_it(50, 50, 300, 300, "red", "Mon premier post it");
-// postit1.affiche();
-
 window.addEventListener("load", () => {
 
-    btn_ajout.addEventListener("click", () => {
-        ajouterPostIt();
+    btn_ajout_vert.addEventListener("click", () => {
+        ajouterPostItVert();
     });
-    monPost.deplacer(400, 300)
-    monPost.affiche()
-    
-    monPost.agrandir(200, 300)
-    monPost.affiche()
-    
-    monPost.change_texte("Salut")
-    monPost.affiche()
+    btn_ajout_rose.addEventListener("click", () => {
+        ajouterPostItRose();
+    });
+    btn_ajout_rouge.addEventListener("click", () => {
+        ajouterPostItRouge();
+    });
+    document.body.addEventListener('mousemove', (event) => {
+        console.log(event);
+        if (action === "deplace" && numPostIt !== -1) {
+            listPostIt[numPostIt].deplace(event.clientX - 50, event.clientY - 50)
+            listPostIt[numPostIt].affiche()
+        }
+    })
 
 });

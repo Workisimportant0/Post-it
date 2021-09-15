@@ -1,11 +1,14 @@
+
 class Post_it {
+    num;
     x;
     y;
     longueur;
     hauteur;
     couleur;
     texte;
-    constructor(x, y, longueur, hauteur, couleur, texte) {
+    constructor(num, x, y, longueur, hauteur, couleur, texte) {
+        this.num = num;
         this.x = x;
         this.y = y;
         this.longueur = longueur;
@@ -13,18 +16,8 @@ class Post_it {
         this.couleur = couleur;
         this.texte = texte;
     }
-    affiche() {
-        let divPostIt = document.createElement('div');
-        container.appendChild(divPostIt);
-        divPostIt.style.backgroundColor = this.couleur;
-        divPostIt.style.width = this.longueur + "px";
-        divPostIt.style.height = this.hauteur + "px";
-        divPostIt.textContent = this.texte;
-        divPostIt.style.marginLeft = this.x + "px";
-        divPostIt.style.marginTop = this.y + "px";
-    }
 
-    deplacer(x, y) {
+    deplace(x, y) {
         this.x = x
         this.y = y
 
@@ -37,6 +30,36 @@ class Post_it {
 
     change_texte(texte) {
         this.texte = texte
+    }
+
+    affiche() {
+        let newElem = false;
+        let divPostIt = document.getElementById("PostIt" + this.num);
+        if (divPostIt === null) {
+            newElem = true;
+            divPostIt = document.createElement('div');
+            divPostIt.id = "PostIt" + this.num;
+        }
+        divPostIt.style.backgroundColor = this.couleur;
+        divPostIt.style.width = this.longueur + "px";
+        divPostIt.style.height = this.hauteur + "px";
+        divPostIt.textContent = this.texte;
+        divPostIt.style.left = this.x + "px";
+        divPostIt.style.top = this.y + "px";
+        divPostIt.style.position = "fixed";
+        if (newElem) {
+            divPostIt.addEventListener('click', () => {
+                if (numPostIt !== this.num) {
+                    numPostIt = this.num;
+                    action = "deplace";
+                }
+                else{
+                    numPostIt = -1;
+                    action = "";
+                }
+            });
+            container.appendChild(divPostIt);
+        }
     }
 
 }

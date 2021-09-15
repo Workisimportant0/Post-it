@@ -9,3 +9,19 @@
     margin-left: 50px;
     margin-top: 20px;
 }
+.container{
+    position: fixed;
+
+}
+body{
+    background-image: linear-gradient(to left top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+#ajout_postit_vert,
+#ajout_postit_pink,
+#ajout_postit_rouge{
+    margin-top: 50px;
+    
+}
